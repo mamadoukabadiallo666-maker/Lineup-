@@ -1,0 +1,83 @@
+<!DOCTYPE html><html><head><title>LINEUP - Sily National</title><meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+:root{--rouge:#CE1126; --jaune:#FCD116; --vert:#009460; --blanc:#FFFFFF; --gris:#F5F5F5;}
+body {background: var(--gris); font-family: 'Segoe UI', Arial; margin: 0; color: #222; padding-bottom: 70px;}
+.header {background: linear-gradient(90deg, var(--rouge), var(--jaune), var(--vert)); padding: 15px 20px; color: white; position: sticky; top: 0; display:flex; justify-content:space-between; align-items:center;}
+.header h1 {margin: 0; font-size: 26px; letter-spacing: 2px;}
+.header-icons {display: flex; gap: 18px;} /* ESPACE UN PEU MOINS */
+.header-icons a {font-size: 28px; color: white; text-decoration: none;}
+.story-bar {display: flex; gap: 12px; padding: 15px; overflow-x: auto; background: var(--blanc); margin: 12px; border-radius: 15px; border-left: 5px solid var(--jaune);}
+.story img {width: 60px; height: 60px; border-radius: 50%; border: 3px solid var(--rouge);}
+.create-post {background: var(--blanc); padding: 15px; border-radius: 15px; margin: 12px; border-top: 4px solid var(--vert);}
+.create-post textarea {width: 95%; border: 2px solid var(--gris); background: var(--gris); border-radius: 12px; padding: 12px;}
+.create-post button {background: var(--rouge); color: white; border: none; padding: 10px 20px; border-radius: 12px; margin-top: 10px; font-weight: bold; float:right;}
+.post {background: var(--blanc); border-radius: 15px; margin: 12px; padding: 15px; border-left: 4px solid var(--jaune);}
+.post b {color: var(--rouge);}
+.post img {width:100%; border-radius:12px; margin-top:8px; border: 2px solid var(--gris);}
+.post video {width:100%; border-radius:12px; margin-top:8px; border: 2px solid var(--gris);}
+.actions {display: flex; justify-content: space-around; border-top: 1px solid var(--gris); padding-top: 12px; margin-top: 12px;}
+.actions a {text-decoration: none; color: var(--vert); font-weight: bold; font-size: 16px; display:flex; align-items:center; gap:6px;}
+.actions span {font-size: 24px;}
+
+/* ===== BARRE DU BAS ===== */
+.bottom-nav {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background: var(--blanc);
+  display: flex;
+  justify-content: space-around;
+  padding: 10px 0;
+  border-top: 3px solid var(--jaune);
+  box-shadow: 0 -4px 10px rgba(0,0,0,0.1);
+}
+.bottom-nav a {
+  text-decoration: none;
+  color: var(--vert);
+  font-size: 26px;
+  text-align: center;
+}
+.bottom-nav a span {
+  display: block;
+  font-size: 11px;
+  color: #666;
+  margin-top: 2px;
+}
+.bottom-nav a.active {
+  color: var(--rouge);
+}
+.bottom-nav a.active span {
+  color: var(--rouge);
+  font-weight: bold;
+}
+</style></head>
+<body>
+<div class="header">
+  <h1>LINEUP</h1>
+  <div class="header-icons">
+    <a href="/search/">🔍</a> <!-- RECHERCHE -->
+    <a href="/create/">➕</a> <!-- NOUVEAU POST -->
+    <a href="/messages/">💬</a> <!-- MESSENGER -->
+    <a href="/menu/">☰</a> <!-- MENU -->
+  </div>
+</div>
+
+<div class="story-bar">{% for story in stories %}<div class="story"><img src="/media/avatars/default.png"><br>{{ story.user.username }}</div>{% endfor %}</div>
+<form class="create-post" method="POST" enctype="multipart/form-data">{% csrf_token %}
+<textarea name="content" placeholder="Exprime toi, patriote..."></textarea><button>Publier</button><div style="clear:both"></div>
+</form>
+{% for post in posts %}<div class="post"><b>{{ post.user.username }}</b><p>{{ post.content }}</p>
+{% if post.image %}<img src="{{ post.image.url }}">{% endif %}
+{% if post.video %}<video src="{{ post.video.url }}" controls></video>{% endif %}
+<div class="actions"><a href="{% url 'like_post' post.id %}"><span style="color:#CE1126">🔥</span> {{ post.total_likes }}</a><a href="{% url 'post_detail' post.id %}"><span style="color:#FCD116">💬</span> Commenter</a><a href="{% url 'share_post' post.id %}"><span style="color:#009460">📢</span> Partager</a></div></div>{% endfor %}
+
+<!-- ===== BARRE DU BAS ===== -->
+<div class="bottom-nav">
+  <a href="/" class="active">🏠<span>Accueil</span></a>
+  <a href="/videos/">🎥<span>Vidéo</span></a>
+  <a href="/notifications/">🔔<span>Notif</span></a>
+  <a href="/profile/">👤<span>Profil</span></a>
+</div>
+
+</body></html>

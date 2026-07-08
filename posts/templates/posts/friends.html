@@ -1,0 +1,6 @@
+<!DOCTYPE html><html><head><title>Amis</title><style>body{background:#f0f2f5;font-family:Arial}.header{background:#1877f2;color:white;padding:10px;text-align:center}.friend{background:white;margin:10px;padding:10px;border-radius:8px}</style></head><body>
+<div class="header"><h2>Mes Amis</h2></div>
+{% for f in friends %}
+<div class="friend"><a href="{% url 'profile' f.username %}">{{f.username}}</a></div>
+{% empty %}<p style="text-align:center">Aucun ami pour le moment</p>{% endfor %}
+</body></html>

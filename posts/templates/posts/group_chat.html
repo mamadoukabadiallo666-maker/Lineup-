@@ -1,0 +1,9 @@
+<!DOCTYPE html><html><head><title>{{group.name}}</title><style>body{background:#f0f2f5;font-family:Arial}.header{background:#1877f2;color:white;padding:10px}.msg{background:white;margin:5px;padding:8px;border-radius:8px}.chat-box{position:fixed;bottom:0;width:100%;background:white;padding:10px;display:flex}</style></head><body>
+<div class="header"><h2>{{group.name}}</h2></div>
+<div style="padding-bottom:60px">
+{% for m in messages %}<div class="msg"><b>{{m.sender.username}}:</b> {{m.content}}</div>{% endfor %}
+</div>
+<form method="POST" class="chat-box">{% csrf_token %}
+<input name="content" placeholder="Écrire..." style="flex:1;padding:8px;border-radius:20px;border:1px solid #ddd">
+<button style="background:#1877f2;color:white;border:none;padding:8px 15px;border-radius:20px">Envoyer</button>
+</form></body></html>

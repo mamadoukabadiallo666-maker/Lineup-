@@ -1,0 +1,6 @@
+<!DOCTYPE html><html><head><title>Messages</title><style>body{background:#f0f2f5;font-family:Arial}.header{background:#1877f2;color:white;padding:10px;text-align:center}.chat{background:white;margin:5px;padding:12px;border-radius:8px}</style></head><body>
+<div class="header"><h2>Discussions</h2></div>
+{% for c in chats %}
+<a href="{% url 'chat' c.username %}" style="text-decoration:none;color:black"><div class="chat">{{c.username}}</div></a>
+{% empty %}<p style="text-align:center">Aucune discussion</p>{% endfor %}
+</body></html>

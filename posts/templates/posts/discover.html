@@ -1,0 +1,9 @@
+<!DOCTYPE html><html><head><title>Découvrir</title><style>body{background:#f0f2f5;font-family:Arial}.header{background:#1877f2;color:white;padding:10px;text-align:center}.user-card{background:white;margin:10px;padding:10px;border-radius:8px;display:flex;justify-content:space-between;align-items:center}.btn{background:#1877f2;color:white;padding:6px 12px;border-radius:6px;text-decoration:none}</style></head><body>
+<div class="header"><h2>Personnes que vous pouvez connaître</h2></div>
+{% for u in users %}
+<div class="user-card">
+    <b>{{u.username}}</b>
+    <a href="{% url 'send_friend_request' u.username %}" class="btn">Ajouter</a>
+</div>
+{% endfor %}
+</body></html>

@@ -1,0 +1,10 @@
+<!DOCTYPE html><html><head><title>Groupes</title><style>body{background:#f0f2f5;font-family:Arial}.header{background:#1877f2;color:white;padding:10px;display:flex;justify-content:space-between}.group{background:white;margin:10px;padding:10px;border-radius:8px}.btn{background:#1877f2;color:white;padding:8px 12px;border-radius:6px;text-decoration:none}</style></head><body>
+<div class="header"><h2>Groupes</h2><a href="{% url 'create_group' %}" class="btn">+ Créer</a></div>
+{% for g in groups %}
+<div class="group">
+    <h3><a href="{% url 'group_chat' g.id %}">{{g.name}}</a></h3>
+    <p>{{g.description}}</p>
+    {% if user not in g.members.all %}<a href="{% url 'join_group' g.id %}" class="btn">Rejoindre</a>{% endif %}
+</div>
+{% endfor %}
+</body></html>

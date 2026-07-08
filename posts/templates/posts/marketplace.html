@@ -1,0 +1,4 @@
+<!DOCTYPE html><html><head><title>Marketplace</title><style>body{background:#f0f2f5}.header{background:#1877f2;color:white;padding:10px;display:flex;justify-content:space-between}.item{background:white;margin:10px;padding:10px;border-radius:8px}</style></head><body>
+<div class="header"><h2>Marketplace Lineup</h2><a href="/admin/" style="color:white">+ Vendre</a></div>
+{% for i in items %}<div class="item"><img src="{{i.image.url}}" style="width:100px"><h3>{{i.title}}</h3><b>{{i.price}} FG</b><p>{{i.seller.username}}</p></div>{% endfor %}
+</body></html>
