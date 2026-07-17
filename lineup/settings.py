@@ -19,6 +19,7 @@ INSTALLED_APPS = [
 MIDDLEWARE = [
     "django.middleware.security.SecurityMiddleware",
     "django.contrib.sessions.middleware.SessionMiddleware",
+    "django.middleware.locale.LocaleMiddleware",  # ajouté pour i18n
     "django.middleware.common.CommonMiddleware",
     "django.middleware.csrf.CsrfViewMiddleware",
     "django.contrib.auth.middleware.AuthenticationMiddleware",
@@ -48,6 +49,25 @@ STATIC_URL = "/static/"
 MEDIA_URL = "/media/"
 MEDIA_ROOT = BASE_DIR / "media"
 
+# Internationalisation / traduction
+LANGUAGE_CODE = "fr-fr"  # français par défaut
+USE_I18N = True
+USE_TZ = True
+
+# Langues disponibles (ordre = priorité)
+LANGUAGES = [
+    ("fr", "Français"),
+    ("en", "English"),
+    ("es", "Español"),
+    ("zh-hans", "中文"),
+    ("ru", "Русский"),
+    ("ar", "العربية"),
+]
+
+# Dossier où seront stockées les traductions (créé à la racine du projet)
+LOCALE_PATHS = [
+    BASE_DIR / "locale",
+]
+
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 LOGIN_URL = "login"
-
