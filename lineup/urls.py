@@ -1,4 +1,4 @@
-from django.urls import path
+from django.urls import path, include
 from django.conf import settings
 from django.conf.urls.static import static
 from lineup import views
@@ -31,4 +31,7 @@ urlpatterns = [
     path("post/<int:post_id>/like/", views.like_post, name="like_post"),
     path("post/<int:post_id>/comment/", views.add_comment, name="add_comment"),
     path("post/<int:post_id>/share/", views.share_post, name="share_post"),
+
+    # i18n URL to enable set_language view
+    path('i18n/', include('django.conf.urls.i18n')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
