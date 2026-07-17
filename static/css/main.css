@@ -1,0 +1,36 @@
+/* main.css - style inspired by Instagram (colors & minimal layout) */
+:root{
+  --bg:#fafafa;
+  --card:#fff;
+  --muted:#8e8e8e;
+  --border:#dbdbdb;
+  --gradient: linear-gradient(45deg,#f58529,#dd2a7b,#8134af,#515bd4);
+}
+*{box-sizing:border-box}
+body{font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, 'Helvetica Neue', Arial; background:var(--bg); margin:0; color:#262626}
+.topbar{background:#fff;border-bottom:1px solid var(--border);position:sticky;top:0;z-index:100}
+.topbar-inner{max-width:980px;margin:0 auto;display:flex;align-items:center;justify-content:space-between;padding:10px}
+.brand{display:flex;align-items:center;text-decoration:none}
+.brand-logo{height:34px}
+.center{flex:1;display:flex;justify-content:center}
+.search-form{width:60%;max-width:420px}
+.search-input{width:100%;padding:6px 10px;border-radius:8px;border:1px solid var(--border);background:#fafafa}
+.right{display:flex;align-items:center;gap:12px}
+.icon{color:var(--muted);text-decoration:none;font-size:18px}
+.btn-login{padding:6px 10px;border-radius:6px;border:1px solid var(--border);text-decoration:none;color:#262626}
+.avatar{width:34px;height:34px;border-radius:50%;object-fit:cover;border:1px solid var(--border)}
+.avatar.placeholder{width:34px;height:34px;border-radius:50%;display:flex;align-items:center;justify-content:center;background:#efefef;color:#555}
+.container{max-width:980px;margin:18px auto;display:flex;gap:18px;padding:0 12px}
+.container > *{flex:1}
+.feed{max-width:600px}
+.card{background:var(--card);border:1px solid var(--border);border-radius:8px;margin-bottom:16px;overflow:hidden}
+.card .head{display:flex;align-items:center;gap:10px;padding:12px}
+.card .head .name{font-weight:600}
+.card .media img{width:100%;display:block}
+.card .actions{display:flex;gap:12px;padding:10px 12px;border-top:1px solid var(--border)}
+.card .actions .btn{cursor:pointer;color:var(--muted);text-decoration:none}
+.sidebar{width:320px}
+.suggestions{background:var(--card);padding:12px;border-radius:8px;border:1px solid var(--border)}
+.footer{max-width:980px;margin:20px auto;padding:12px;color:var(--muted);text-align:center}
+/* gradient text utility for branding */
+.brand-text{background:var(--gradient);-webkit-background-clip:text;background-clip:text;color:transparent;font-weight:800}

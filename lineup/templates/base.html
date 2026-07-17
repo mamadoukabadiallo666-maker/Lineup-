@@ -1,53 +1,53 @@
+{% load static %}
 <!DOCTYPE html>
 <html>
 <head>
-<title>LINEUP</title>
-<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
-<style>
-:root{--rouge: #CE1126;--jaune: #FCD116;--vert: #009460;}
-*{margin:0;padding:0;box-sizing:border-box;font-family:system-ui}
-body{background:#F0F2F5}
-svg{width:26px;height:26px}
-.topbar{background:linear-gradient(90deg, var(--rouge) 0%, var(--jaune) 50%, var(--vert) 100%);padding:10px 12px;position:sticky;top:0;z-index:100;display:flex;justify-content:space-between;align-items:center}
-.logo{color:#fff; font-size:26px; font-weight:800;} 
-.right-top{display:flex;gap:8px}
-.top-btn{width:40px;height:40px;border-radius:50%;background:rgba(255,255,255,.2);display:flex;align-items:center;justify-content:center;color:#fff;cursor:pointer}
-.nav{height:52px;background:#fff;display:flex;justify-content:space-around;align-items:center;border-bottom:1px solid #E4E6EB}
-.nav-item{position:relative;color:#65676B;width:20%;height:100%;display:flex;align-items:center;justify-content:center;text-decoration:none}
-.nav-item.active{color:var(--rouge);border-bottom:3px solid var(--jaune)}
-.nav-item .badge{position:absolute;top:6px;right:calc(50% - 20px);background:var(--rouge);color:#fff;font-size:11px;font-weight:700;border-radius:12px;padding:1px 5px;border:2px solid #fff}
-.menu-overlay{display:none;position:fixed;top:0;left:0;right:0;bottom:0;background:rgba(0,0,0,.5);z-index:200}
-.menu{position:fixed;top:0;right:-100%;width:90%;max-width:400px;height:100%;background:#fff;z-index:201;transition:right .3s;overflow-y:auto}
-.menu.show{right:0}.menu-overlay.show{display:block}
-.menu-header{padding:16px;border-bottom:1px solid #E4E6EB}
-.menu-profile{display:flex;align-items:center;gap:10px;text-decoration:none;color:#000}
-.menu-profile img{width:56px;height:56px;border-radius:50%;border:2px solid var(--jaune)}
-.menu-section{padding:12px 0;border-bottom:1px solid #E4E6EB}
-.menu-item{display:flex;align-items:center;gap:12px;padding:10px 16px;text-decoration:none;color:#050505;font-weight:500}
-.menu-icon{width:36px;height:36px;border-radius:50%;display:flex;align-items:center;justify-content:center}
-.create{background:#fff;padding:8px 12px;display:flex;align-items:center;gap:10px;border-bottom:1px solid #E4E6EB}
-.create .avatar{width:40px;height:40px;border-radius:50%;border:2px solid var(--jaune)}
-.create input{flex:1;background:#F0F2F5;border:none;border-radius:20px;padding:10px 12px;outline:none}
-.stories{background:#fff;padding:12px;display:flex;gap:8px;overflow-x:auto}
-.story{width:110px;height:200px;border-radius:10px;position:relative;flex-shrink:0;overflow:hidden;border:3px solid var(--jaune)}
-.story img{width:100%;height:100%;object-fit:cover}
-.post{background:#fff;margin-top:8px;border-top:4px solid var(--jaune)}
-.post-head{padding:12px;display:flex;align-items:center;gap:10px}
-.post-head .avatar{width:40px;height:40px;border-radius:50%;border:2px solid var(--jaune)}
-.post-img{width:100%}
-.actions{display:flex;justify-content:space-around;padding:8px 0;border-top:1px solid #E4E6EB}
-.action{color:#65676B;font-weight:600;text-decoration:none;display:flex;align-items:center;gap:6px}
-.action svg{width:18px;height:18px}
-</style>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>LineUp</title>
+  <link rel="stylesheet" href="{% static 'css/main.css' %}">
+  <link rel="icon" href="{% static 'img/logo.svg' %}" type="image/svg+xml">
 </head>
 <body>
-<div class="topbar"><div class="logo">LINEUP</div><div class="right-top"><a href="#" class="top-btn"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M14.5 10C14.5 10.28 14.28 10.5 14 10.5H10.5V14C10.5 14.28 10.28 14.5 10 14.5C9.72 14.5 9.5 14.28 9.5 14V10.5H6C5.72 10.5 5.5 10.28 5.5 10C5.5 9.72 5.72 9.5 6 9.5H9.5V6C9.5 5.72 9.72 5.5 10 5.5C10.28 5.5 10.5 5.72 10.5 6V9.5H14C14.28 9.5 14.5 9.72 14.5 10Z"/></svg></a><a href="#" class="top-btn"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M9 3C5.686 3 3 5.686 3 9C3 12.314 5.686 15 9 15C10.661 15 12.128 14.376 13.187 13.356L17.708 17.876C17.983 18.151 18.42 18.151 18.695 17.876C18.97 17.601 18.97 17.164 18.695 16.889L14.173 12.368C15.192 11.309 16 9.841 16 8.179C16 4.686 13.314 2 9 2ZM9 14C6.243 14 4 11.757 4 9C4 6.243 6.243 4 9 4C11.757 4 14 6.243 14 9C14 11.757 11.757 14 9 14Z"/></svg></a><div class="top-btn" onclick="toggleMenu()"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M3 5H17C17.552 5 18 5.448 18 6C18 6.552 17.552 7 17 7H3C2.448 7 2 6.552 2 6C2 5.448 2.448 5 3 5ZM3 10H17C17.552 10 18 10.448 18 11C18 11.552 17.552 12 17 12H3C2.448 12 2 11.552 2 11C2 10.448 2.448 10 3 10ZM3 15H17C17.552 15 18 15.448 18 16C18 16.552 17.552 17 17 17H3C2.448 17 2 16.552 2 16C2 15.448 2.448 15 3 15Z"/></svg></div></div></div>
-<div class="nav"><a href="{% url "home" %}" class="nav-item active"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M9.999 1.5L2 9.5V18.5C2 19.052 2.448 19.5 3 19.5H7C7.552 19.5 8 19.052 8 18.5V13.5C8 12.948 8.448 12.5 9 12.5H11C11.552 12.5 12 12.948 12 13.5V18.5C12 19.052 12.448 19.5 13 19.5H17C17.552 19.5 18 19.052 18 18.5V9.5L10.001 1.5H9.999Z"/></svg><span class="badge">15+</span></a><a href="{% url "friends" %}" class="nav-item"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 3C7.243 3 5 5.243 5 8C5 10.757 7.243 13 10 13C12.757 13 15 10.757 15 8C15 5.243 12.757 3 10 3ZM10 12C7.794 12 6 10.206 6 8C6 5.794 7.794 4 10 4C12.206 4 14 5.794 14 8C14 10.206 12.206 12 10 12ZM18 17C18 15.343 16.657 14 15 14H14.5C14.224 14 14 14.224 14 14.5C14 14.776 14.224 15 14.5 15H15C16.105 15 17 15.895 17 17V18C17 18.552 16.552 19 16 19H4C3.448 19 3 18.552 3 18V17C3 15.895 3.895 15 5 15H5.5C5.776 15 6 14.776 6 14.5C6 14.224 5.776 14 5.5 14H5C3.343 14 2 15.343 2 17V19H18V17Z"/></svg><span class="badge">15+</span></a><a href="{% url "messages" %}" class="nav-item"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2C4.477 2 0 5.477 0 10C0 12.991 1.882 15.591 4.617 17.07L2.5 19.5L5.5 18C6.87 18.5 8.39 18.8 10 18.8C15.523 18.8 20 15.323 20 10.8C20 6.277 15.523 2.8 10 2.8V2ZM10 17.8C8.5 17.8 7.05 17.55 5.75 17.08L4 17.8L4.8 16.1C3.45 14.9 2.5 13.05 2.5 11C2.5 6.86 5.86 3.5 10 3.5C14.14 3.5 17.5 6.86 17.5 11C17.5 15.14 14.14 18.5 10 18.5V17.8Z"/></svg></a><a href="{% url "videos_redirect" %}" class="nav-item"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2C4.477 2 2 4.477 2 10C2 15.523 4.477 18 10 18C15.523 18 18 15.523 18 10C18 4.477 15.523 2 10 2ZM14 11.5L9 14.5C8.725 14.658 8.4 14.5 8.4 14.167V5.833C8.4 5.5 8.725 5.342 9 5.5L14 8.5C14.25 8.642 14.25 8.858 14 9L9 12L14 11.5Z"/></svg><span class="badge">15+</span></a><a href="{% url "notifications" %}" class="nav-item"><svg viewBox="0 0 20 20" fill="currentColor"><path d="M10 2C7.243 2 5 4.243 5 7V11L3 13V14H17V13L15 11V7C15 4.243 12.757 2 10 2ZM10 19C10.552 19 11 18.552 11 18H9C9 18.552 9.448 19 10 19Z"/></svg><span class="badge">15+</span></a></div>
-<div class="menu-overlay" onclick="toggleMenu()"></div>
-<div class="menu" id="fbMenu"><div class="menu-header"><a href="{% url "profile_redirect" %}" class="menu-profile"><img src="{{ request.user.profile.avatar.url }}"><div><b style="font-size:18px">{{ request.user.username }}</b><br><small style="color:#65676B">Voir votre profil</small></div></a></div>
-<div class="menu-section"><a href="{% url "friends" %}" class="menu-item"><div class="menu-icon" style="background:#E7F3FF"><svg viewBox="0 0 20 20" fill="#1877F2"><path d="M10 3C7.243 3 5 5.243 5 8C5 10.757 7.243 13 10 13C12.757 13 15 10.757 15 8C15 5.243 12.757 3 10 3ZM10 12C7.794 12 6 10.206 6 8C6 5.794 7.794 4 10 4C12.206 4 14 5.794 14 8C14 10.206 12.206 12 10 12ZM18 17C18 15.343 16.657 14 15 14H14.5C14.224 14 14 14.224 14 14.5C14 14.776 14.224 15 14.5 15H15C16.105 15 17 15.895 17 17V18C17 18.552 16.552 19 16 19H4C3.448 19 3 18.552 3 18V17C3 15.895 3.895 15 5 15H5.5C5.776 15 6 14.776 6 14.5C6 14.224 5.776 14 5.5 14H5C3.343 14 2 15.343 2 17V19H18V17Z"/></svg></div> Amis</a><a href="{% url "groups" %}" class="menu-item"><div class="menu-icon" style="background:#E4E6EB"><svg viewBox="0 0 20 20" fill="#1877F2"><path d="M10 2L3 7V18H7V12H13V18H17V7L10 2Z"/></svg></div> Groupes</a><a href="{% url "marketplace" %}" class="menu-item"><div class="menu-icon" style="background:#E4F2E7"><svg viewBox="0 0 20 20" fill="#42B72A"><path d="M1 4H19V6H1V4ZM1 8H19V10H1V8ZM1 12H19V14H1V12ZM1 16H19V18H1V16Z"/></svg></div> Marketplace</a><a href="{% url "videos_redirect" %}" class="menu-item"><div class="menu-icon" style="background:#E7F3FF"><svg viewBox="0 0 20 20" fill="#1877F2"><path d="M10 2C4.477 2 2 4.477 2 10C2 15.523 4.477 18 10 18C15.523 18 18 15.523 18 10C18 4.477 15.523 2 10 2ZM14 11.5L9 14.5C8.725 14.658 8.4 14.5 8.4 14.167V5.833C8.4 5.5 8.725 5.342 9 5.5L14 8.5C14.25 8.642 14.25 8.858 14 9L9 12L14 11.5Z"/></svg></div> Vidéos</a><a href="{% url "wallet" %}" class="menu-item"><div class="menu-icon" style="background:#E4F2E7"><svg viewBox="0 0 20 20" fill="var(--vert)"><path d="M1 4C1 3.448 1.448 3 2 3H18C18.552 3 19 3.448 19 4V6H1V4ZM1 8H19V16C19 16.552 18.552 17 18 17H2C1.448 17 1 16.552 1 16V8ZM4 11H8V13H4V11Z"/></svg></div> LINEUP Wallet</a></div>
-<div class="menu-section"><a href="#" class="menu-item"><div class="menu-icon" style="background:#E4E6EB"><svg viewBox="0 0 20 20" fill="#65676B"><path d="M10 2C5.029 2 1 6.029 1 11C1 15.971 5.029 20 10 20C14.971 20 19 15.971 19 11C19 6.029 14.971 2 10 2ZM10 18C6.134 18 3 14.866 3 11C3 7.134 6.134 4 10 4C13.866 4 17 7.134 17 11C17 14.866 13.866 18 10 18Z"/></svg></div> Paramètres</a></div></div>
-{% block content %}{% endblock %}
-<script>function toggleMenu(){document.getElementById("fbMenu").classList.toggle("show");document.querySelector(".menu-overlay").classList.toggle("show");}</script>
+  <header class="topbar">
+    <div class="topbar-inner">
+      <div class="left">
+        <a href="{% url 'home' %}" class="brand">
+          <img src="{% static 'img/logo.svg' %}" alt="LineUp" class="brand-logo">
+        </a>
+      </div>
+      <div class="center">
+        <form action="{% url 'search' %}" method="get" class="search-form">
+          <input name="q" placeholder="Rechercher" class="search-input" value="{{ request.GET.q|default:'' }}">
+        </form>
+      </div>
+      <div class="right">
+        <a href="{% url 'home' %}" class="icon" title="Accueil">🏠</a>
+        <a href="{% url 'messages' %}" class="icon" title="Messages">💬</a>
+        <a href="#" class="icon" title="Nouveau">➕</a>
+        <a href="#" class="icon" title="Explorer">🔍</a>
+        {% if request.user.is_authenticated %}
+        <a href="{% url 'profile_redirect' %}" class="avatar-link">
+          {% if request.user.profile.avatar %}
+          <img src="{{ request.user.profile.avatar.url }}" class="avatar">
+          {% else %}
+          <div class="avatar placeholder">{{ request.user.username|slice:":1"|upper }}</div>
+          {% endif %}
+        </a>
+        {% else %}
+        <a href="{% url 'login' %}" class="btn-login">Connexion</a>
+        {% endif %}
+      </div>
+    </div>
+  </header>
+
+  <main class="container">
+    {% block content %}{% endblock %}
+  </main>
+
+  <footer class="footer">
+    <div>© {{ now|date:"Y" }} LineUp</div>
+  </footer>
+
 </body>
 </html>
