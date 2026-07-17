@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Demande de Retrait - LineUpApp</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f4f4f9; padding: 15px; margin: 0; }
+        .card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); max-width: 400px; margin: 20px auto; }
+        h2 { text-align: center; color: #333; }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; color: #555; }
+        input { width: 95%; padding: 10px; border: 1px solid #ccc; border-radius: 6px; font-size: 16px; }
+        .btn-submit { background: #e67e22; color: white; border: none; padding: 12px; border-radius: 6px; cursor: pointer; font-weight: bold; width: 100%; font-size: 16px; margin-top: 10px; }
+        .error-msg { background: #fde8e8; color: #e74c3c; padding: 10px; border-radius: 6px; margin-bottom: 15px; font-size: 14px; text-align: center; }
+        .back-link { display: block; text-align: center; margin-top: 15px; color: #7f8c8d; text-decoration: none; }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h2>Retrait Orange Money</h2>
+        <p style="text-align: center; color: #7f8c8d;">Solde disponible : <strong>{{ wallet.points_balance }} Pts ({{ solde_gnf }} GNF)</strong></p>
+
+        {% if error %}
+            <div class="error-msg">⚠️ {{ error }}</div>
+        {% endif %}
+
+        <form method="POST">
+            {% csrf_token %}
+            <div class="form-group">
+                <label for="phone">Numéro Orange Money (9 chiffres) :</label>
+                <input type="tel" id="phone" name="phone" placeholder="Ex: 622000000" pattern="[0-9]{9}" required>
+            </div>
+            
+            <div class="form-group">
+                <label for="points">Nombre de points à retirer :</label>
+                <input type="number" id="points" name="points" min="7500" max="{{ wallet.points_balance }}" value="7500" required>
+                <small style="color: #7f8c8d;">Minimum 7 500 Pts (75 000 GNF)</small>
+            </div>
+
+            <button type="submit" class="btn-submit">Confirmer le retrait</button>
+        </form>
+
+        <a href="/wallet/" class="back-link">← Retour au portefeuille</a>
+    </div>
+
+</body>
+</html>

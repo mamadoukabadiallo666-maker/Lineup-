@@ -1,0 +1,61 @@
+{% extends "base.html" %}
+{% block content %}
+<div style="background:#F0F2F5;min-height:100vh">
+<div style="background:#fff;padding:16px;border-bottom:1px solid #E4E6EB">
+<h2 style="color:var(--rouge);margin:0">Paramètres</h2>
+</div>
+
+<div style="background:#fff;margin:12px;border-radius:8px;padding:12px">
+<div style="display:flex;gap:12px;align-items:center;padding:8px 0;border-bottom:1px solid #F0F2F5">
+<img src="{{ request.user.profile.avatar.url }}" style="width:60px;height:60px;border-radius:50%">
+<div>
+<b style="color:var(--rouge);font-size:18px">{{ request.user.username }}</b><br>
+<span style="color:#65676B">Voir votre profil</span>
+</div>
+</div>
+</div>
+
+<div style="background:#fff;margin:12px;border-radius:8px">
+<div style="padding:12px;border-bottom:1px solid #F0F2F5"><b>Paramètres du compte</b></div>
+<a href="#" style="display:flex;justify-content:space-between;padding:12px;text-decoration:none;color:#000;border-bottom:1px solid #F0F2F5">
+<span>Informations personnelles</span><span>></span>
+</a>
+<a href="#" style="display:flex;justify-content:space-between;padding:12px;text-decoration:none;color:#000;border-bottom:1px solid #F0F2F5">
+<span>Mot de passe et sécurité</span><span>></span>
+</a>
+<a href="#" style="display:flex;justify-content:space-between;padding:12px;text-decoration:none;color:#000;border-bottom:1px solid #F0F2F5">
+<span>Confidentialité</span><span>></span>
+</a>
+<a href="#" style="display:flex;justify-content:space-between;padding:12px;text-decoration:none;color:#000">
+<span>Publicités</span><span>></span>
+</a>
+</div>
+
+<div style="background:#fff;margin:12px;border-radius:8px">
+<div style="padding:12px;border-bottom:1px solid #F0F2F5"><b>Préférences</b></div>
+<a href="#" style="display:flex;justify-content:space-between;padding:12px;text-decoration:none;color:#000;border-bottom:1px solid #F0F2F5">
+<span>Notifications</span><span>></span>
+</a>
+<a href="#" style="display:flex;justify-content:space-between;padding:12px;text-decoration:none;color:#000;border-bottom:1px solid #F0F2F5">
+<span>Langue</span><span>></span>
+</a>
+<a href="#" style="display:flex;justify-content:space-between;padding:12px;text-decoration:none;color:#000">
+<span>Thème sombre</span><span>></span>
+</a>
+</div>
+
+<div style="background:#fff;margin:12px;border-radius:8px">
+<div style="padding:12px;border-bottom:1px solid #F0F2F5"><b>Aide et support</b></div>
+<a href="#" style="display:flex;justify-content:space-between;padding:12px;text-decoration:none;color:#000;border-bottom:1px solid #F0F2F5">
+<span>Centre daide</span><span>></span>
+</a>
+<a href="#" style="display:flex;justify-content:space-between;padding:12px;text-decoration:none;color:#000">
+<span>Signaler un problème</span><span>></span>
+</a>
+</div>
+
+<div style="padding:12px">
+<a href="{% url "logout" %}" style="display:block;padding:14px;background:var(--rouge);color:#fff;text-align:center;border-radius:6px;text-decoration:none;font-weight:700;font-size:16px">🚪 Déconnexion</a>
+</div>
+</div>
+{% endblock %}

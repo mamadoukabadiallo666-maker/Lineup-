@@ -1,0 +1,7 @@
+<h2>Nouveau Post</h2>
+<form method="post" enctype="multipart/form-data">
+{% csrf_token %}
+<input type="file" name="image"><br><br>
+<textarea name="caption" placeholder="Que se passe-t-il ?" rows="4" cols="50"></textarea><br><br>
+<button type="submit">Publier</button>
+</form>

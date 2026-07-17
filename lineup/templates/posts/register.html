@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block content %}
+<div style="background:#fff;padding:40px;margin:20px;border-radius:8px">
+<h2 style="color:var(--rouge);text-align:center">Inscription LINEUP</h2>
+<form method="POST">
+{% csrf_token %}
+{{ form.as_p }}
+<button type="submit" style="width:100%;background:var(--vert);color:#fff;border:none;padding:12px;border-radius:6px;font-weight:700">Sinscrire</button>
+</form>
+</div>
+{% endblock %}

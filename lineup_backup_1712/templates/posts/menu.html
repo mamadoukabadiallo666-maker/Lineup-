@@ -1,0 +1,16 @@
+{% extends "base.html" %}
+{% block content %}
+<div style="background:#fff">
+<a href="{% url "profile_redirect" %}" style="padding:12px;display:flex;gap:10px;border-bottom:1px solid #F0F2F5;text-decoration:none;color:#000">
+<img src="{{ request.user.profile.avatar.url }}" style="width:60px;height:60px;border-radius:50%">
+<div><b style="color:var(--rouge)">{{ request.user.username }}</b><br>Voir votre profil</div>
+</a>
+<a href="{% url "friends" %}" style="padding:12px;display:flex;gap:10px;text-decoration:none;color:#000">👥 Amis</a>
+<a href="{% url "groups" %}" style="padding:12px;display:flex;gap:10px;text-decoration:none;color:#000">👨‍👩‍👧‍👦 Groupes</a>
+<a href="{% url "marketplace" %}" style="padding:12px;display:flex;gap:10px;text-decoration:none;color:#000">🛒 Marketplace</a>
+<a href="{% url "all_videos" %}" style="padding:12px;display:flex;gap:10px;text-decoration:none;color:#000">📺 Vidéos</a>
+<a href="{% url "wallet" %}" style="padding:12px;display:flex;gap:10px;text-decoration:none;color:#000">💰 LINEUP Wallet</a>
+<a href="{% url "settings" %}" style="padding:12px;display:flex;gap:10px;text-decoration:none;color:#000">⚙️ Paramètres</a>
+<a href="{% url "logout" %}" style="padding:12px;display:flex;gap:10px;border-top:1px solid #F0F2F5;margin-top:12px;text-decoration:none;color:var(--rouge);font-weight:700">🚪 Déconnexion</a>
+</div>
+{% endblock %}

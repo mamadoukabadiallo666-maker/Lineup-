@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% block content %}
+<div class="card">
+<h2>🔴 PRÊT POUR LE LIVE</h2>
+<video id="video" autoplay muted style="width:100%;background:#000;border-radius:10px"></video>
+<br>
+<button onclick="startCam()" class="btn-publier">Démarrer Caméra</button>
+<a href="/live/stop/" style="color:gray">Stop</a>
+<script>
+function startCam(){
+ navigator.mediaDevices.getUserMedia({video:true,audio:true})
+ .then(stream => {document.getElementById('video').srcObject = stream})
+ .catch(err => alert('Erreur: '+err))
+}
+</script>
+</div>
+{% endblock %}

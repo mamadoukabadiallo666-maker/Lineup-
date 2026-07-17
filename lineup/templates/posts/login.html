@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block content %}
+<div style="background:#fff;padding:40px;margin:20px;border-radius:8px">
+<h2 style="color:var(--rouge);text-align:center">Connexion LINEUP</h2>
+<form method="POST">
+{% csrf_token %}
+<input name="username" placeholder="Nom dutilisateur" style="width:100%;padding:10px;margin:8px 0;border:1px solid #E4E6EB;border-radius:6px">
+<input name="password" type="password" placeholder="Mot de passe" style="width:100%;padding:10px;margin:8px 0;border:1px solid #E4E6EB;border-radius:6px">
+<button type="submit" style="width:100%;background:var(--rouge);color:#fff;border:none;padding:12px;border-radius:6px;font-weight:700">Se connecter</button>
+</form>
+<p style="text-align:center;margin-top:12px"><a href="{% url "register" %}">Créer un compte</a></p>
+</div>
+{% endblock %}

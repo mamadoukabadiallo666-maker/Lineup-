@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<div style="background:#fff;padding:20px;text-align:center">
+<img src="{{ profile.avatar.url }}" style="width:120px;height:120px;border-radius:50%;border:3px solid var(--rouge)">
+<h2 style="color:var(--rouge)">{{ profile_user.username }}</h2>
+<p style="color:#65676B">{{ profile.bio }}</p>
+
+<form method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+<input type="file" name="avatar" style="margin:8px 0">
+<textarea name="bio" placeholder="Votre bio..." style="width:100%;padding:8px;border:1px solid #E4E6EB;border-radius:6px;margin:8px 0">{{ profile.bio }}</textarea>
+<button type="submit" style="background:var(--vert);color:#fff;border:none;padding:10px 16px;border-radius:6px">Enregistrer</button>
+</form>
+</div>
+
+{% for post in posts %}
+<div class="post">
+<p>{{ post.content }}</p>
+{% if post.image %}<img src="{{ post.image.url }}" class="post-img">{% endif %}
+</div>
+{% endfor %}
+{% endblock %}

@@ -1,0 +1,44 @@
+{% extends "base.html" %}
+{% block content %}
+<div class="post">
+<div class="post-head">
+<img src="{{ post.user.profile.avatar.url }}" class="avatar">
+<div>
+<b style="color:var(--rouge)">{{ post.user.username }}</b><br>
+<small style="color:#65676B">{{ post.created_at|timesince }}</small>
+</div>
+</div>
+<p style="padding:0 12px 8px 12px">{{ post.content }}</p>
+{% if post.image %}<img src="{{ post.image.url }}" class="post-img">{% endif %}
+<div class="actions">
+<a href="{% url "like_post" post.id %}" class="action" style="color:{% if request.user in post.likes.all %}var(--rouge){% else %}#65676B{% endif %}">🔥 {{ post.likes.count }}</a>
+<a class="action">💬 {{ post.comments.count }}</a>
+</div>
+</div>
+
+<!-- SECTION COMMENTAIRES -->
+<div style="background:#fff;margin-top:8px;padding:12px">
+<h3 style="color:var(--rouge);margin-bottom:12px">Commentaires</h3>
+
+<!-- FORMULAIRE -->
+<form method="POST" action="{% url "add_comment" post.id %}" style="display:flex;gap:8px;margin-bottom:16px">
+{% csrf_token %}
+<img src="{{ request.user.profile.avatar.url }}" style="width:32px;height:32px;border-radius:50%">
+<input name="content" placeholder="Écrivez un commentaire..." style="flex:1;background:#F0F2F5;border:none;border-radius:20px;padding:8px 12px;outline:none">
+<button type="submit" style="background:var(--rouge);color:#fff;border:none;border-radius:20px;padding:0 16px;font-weight:600">Publier</button>
+</form>
+
+<!-- LISTE COMMENTAIRES -->
+{% for comment in comments %}
+<div style="display:flex;gap:8px;margin-bottom:12px">
+<img src="{{ comment.user.profile.avatar.url }}" style="width:32px;height:32px;border-radius:50%">
+<div style="background:#F0F2F5;border-radius:18px;padding:8px 12px;flex:1">
+<b style="font-size:13px;color:var(--rouge)">{{ comment.user.username }}</b><br>
+<span style="font-size:14px">{{ comment.content }}</span>
+</div>
+</div>
+{% empty %}
+<p style="color:#65676B;text-align:center">Soyez le premier à commenter</p>
+{% endfor %}
+</div>
+{% endblock %}

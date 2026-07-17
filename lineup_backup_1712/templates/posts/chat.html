@@ -1,0 +1,21 @@
+{% extends "base.html" %}
+{% block content %}
+<div style="background:#fff;padding:12px;display:flex;gap:10px;border-bottom:1px solid #E4E6EB">
+<img src="{{ other_user.profile.avatar.url }}" style="width:40px;height:40px;border-radius:50%">
+<b style="color:var(--rouge)">{{ other_user.username }}</b>
+</div>
+
+<div style="background:#F0F2F5;padding:12px;height:70vh;overflow-y:auto">
+{% for msg in messages %}
+<div style="margin:8px 0;text-align:{% if msg.sender == request.user %}right{% else %}left{% endif %}">
+<span style="background:{% if msg.sender == request.user %}var(--rouge){% else %}#fff{% endif %};color:{% if msg.sender == request.user %}#fff{% else %}#000{% endif %};padding:8px 12px;border-radius:18px;display:inline-block;max-width:70%">{{ msg.content }}</span>
+</div>
+{% endfor %}
+</div>
+
+<form method="POST" style="background:#fff;padding:8px;display:flex;gap:8px">
+{% csrf_token %}
+<input name="content" placeholder="Écrivez un message..." style="flex:1;background:#F0F2F5;border:none;border-radius:20px;padding:10px 12px;outline:none">
+<button type="submit" style="background:var(--rouge);color:#fff;border:none;border-radius:50%;width:40px">➤</button>
+</form>
+{% endblock %}

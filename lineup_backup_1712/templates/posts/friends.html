@@ -1,0 +1,41 @@
+{% extends "base.html" %}
+{% block content %}
+<h2 style="background:#fff;padding:12px;color:var(--rouge)">Suggestions</h2>
+
+{% for user in suggestions %}
+<div style="background:#fff;padding:12px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #F0F2F5">
+<div style="display:flex;gap:10px;align-items:center">
+<img src="{{ user.profile.avatar.url }}" style="width:50px;height:50px;border-radius:50%">
+<b>{{ user.username }}</b>
+</div>
+<a href="{% url "send_request" user.id %}" style="background:var(--rouge);color:#fff;padding:6px 12px;border-radius:6px;text-decoration:none;font-weight:600">Ajouter</a>
+</div>
+{% endfor %}
+
+<h2 style="background:#fff;padding:12px;color:var(--rouge);margin-top:8px">Demandes reçues</h2>
+{% for req in requests %}
+<div style="background:#fff;padding:12px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #F0F2F5">
+<b>{{ req.from_user.username }}</b>
+<div style="display:flex;gap:8px">
+<a href="{% url "accept_request" req.id %}" style="background:var(--vert);color:#fff;padding:6px 12px;border-radius:6px;text-decoration:none">Accepter</a>
+<a href="{% url "decline_request" req.id %}" style="background:#65676B;color:#fff;padding:6px 12px;border-radius:6px;text-decoration:none">Refuser</a>
+</div>
+</div>
+{% endfor %}
+
+<h2 style="background:#fff;padding:12px;color:var(--rouge);margin-top:8px">Demandes envoyées</h2>
+{% for req in sent %}
+<div style="background:#fff;padding:12px;display:flex;justify-content:space-between;align-items:center;border-bottom:1px solid #F0F2F5">
+<b>{{ req.to_user.username }}</b>
+<a href="{% url "cancel_request" req.to_user.id %}" style="background:#65676B;color:#fff;padding:6px 12px;border-radius:6px;text-decoration:none">Annuler</a>
+</div>
+{% endfor %}
+
+<h2 style="background:#fff;padding:12px;color:var(--rouge);margin-top:8px">Mes Amis</h2>
+{% for friend in friends %}
+<a href="{% url "chat" friend.id %}" style="background:#fff;padding:12px;display:flex;gap:10px;align-items:center;border-bottom:1px solid #F0F2F5;text-decoration:none;color:#000">
+<img src="{{ friend.profile.avatar.url }}" style="width:50px;height:50px;border-radius:50%">
+<b>{{ friend.username }}</b>
+</a>
+{% endfor %}
+{% endblock %}

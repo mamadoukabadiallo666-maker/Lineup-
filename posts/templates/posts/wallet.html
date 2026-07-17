@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Portefeuille - LineUpApp</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f4f4f9; padding: 15px; margin: 0; }
+        .card { background: white; padding: 20px; border-radius: 12px; box-shadow: 0 4px 10px rgba(0,0,0,0.05); max-width: 400px; margin: 20px auto; text-align: center; }
+        .balance { font-size: 28px; color: #2ecc71; font-weight: bold; margin: 10px 0; }
+        .gnf { font-size: 22px; color: #34495e; font-weight: bold; margin-bottom: 20px; }
+        
+        /* Bouton Actif */
+        .btn-active { background: #e67e22; color: white; border: none; padding: 12px 25px; border-radius: 6px; cursor: pointer; text-decoration: none; display: inline-block; font-weight: bold; width: 80%; }
+        
+        /* Bouton Grisé */
+        .btn-disabled { background: #bdc3c7; color: #7f8c8d; border: none; padding: 12px 25px; border-radius: 6px; cursor: not-allowed; text-decoration: none; display: inline-block; font-weight: bold; width: 80%; }
+        
+        .seuil-info { font-size: 13px; color: #e74c3c; margin-top: 10px; font-weight: 500; }
+        .history { max-width: 400px; margin: 20px auto; }
+        ul { list-style: none; padding: 0; }
+        li { background: white; padding: 12px; margin-bottom: 8px; border-radius: 8px; display: flex; justify-content: space-between; box-shadow: 0 2px 4px rgba(0,0,0,0.02); }
+    </style>
+</head>
+<body>
+
+    <div class="card">
+        <h2>Mon Portefeuille</h2>
+        <p style="color: #7f8c8d; margin-bottom: 5px;">Solde en points :</p>
+        <div class="balance">{{ wallet.points_balance }} Pts</div>
+        <p style="color: #7f8c8d; margin-bottom: 5px;">Valeur estimée :</p>
+        <div class="gnf">{{ solde_gnf }} GNF</div>
+        
+        {% if wallet.points_balance >= 7500 %}
+            <a href="/withdraw/" class="btn-active">Retirer par Orange Money</a>
+        {% else %}
+            <button class="btn-disabled" disabled>Retirer par Orange Money</button>
+            <div class="seuil-info">🔒 Retrait minimum : 7 500 Pts (75 000 GNF)</div>
+        {% endif %}
+    </div>
+
+    <div class="history">
+        <h3>Historique des activités</h3>
+        <ul>
+            {% for tx in transactions %}
+            <li>
+                <span>{{ tx.description }}</span>
+                <strong style="color: {% if tx.transaction_type == 'ADD' %}#2ecc71{% else %}#e74c3c{% endif %};">
+                    {% if tx.transaction_type == 'ADD' %}+{% else %}-{% endif %}{{ tx.amount }} Pts
+                </strong>
+            </li>
+            {% empty %}
+            <li style="justify-content: center; color: #7f8c8d;">Aucune activité pour le moment.</li>
+            {% endfor %}
+        </ul>
+    </div>
+
+</body>
+</html>

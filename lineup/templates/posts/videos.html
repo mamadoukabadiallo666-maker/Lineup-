@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+{% block content %}
+{% for video in videos %}
+<div class="post">
+<div class="post-head">
+<img src="{{ video.user.profile.avatar.url }}" class="avatar">
+<b style="color:var(--rouge)">{{ video.user.username }}</b>
+</div>
+<p style="padding:0 12px">{{ video.content }}</p>
+<video src="{{ video.image.url }}" controls style="width:100%"></video>
+</div>
+{% empty %}
+<div style="background:#fff;padding:40px;text-align:center">Aucune vidéo pour le moment</div>
+{% endfor %}
+{% endblock %}

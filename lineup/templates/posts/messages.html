@@ -1,0 +1,30 @@
+{% extends "base.html" %}
+{% block content %}
+<div style="background:#fff;padding:12px;border-bottom:1px solid #E4E6EB">
+<h2 style="color:var(--rouge)">Messages</h2>
+</div>
+
+<h3 style="padding:12px;color:#65676B">Mes Amis</h3>
+{% for user in friends %}
+<a href="{% url "chat" user.id %}" style="background:#fff;padding:12px;display:flex;gap:10px;border-bottom:1px solid #E4E6EB;text-decoration:none;color:#000">
+<img src="{{ user.profile.avatar.url }}" style="width:56px;height:56px;border-radius:50%">
+<div style="flex:1">
+<b>{{ user.username }}</b>
+</div>
+</a>
+{% endfor %}
+
+<h3 style="padding:12px;color:#65676B">Autres conversations</h3>
+{% for user in others %}
+<a href="{% url "chat" user.id %}" style="background:#fff;padding:12px;display:flex;gap:10px;border-bottom:1px solid #E4E6EB;text-decoration:none;color:#000">
+<img src="{{ user.profile.avatar.url }}" style="width:56px;height:56px;border-radius:50%">
+<div style="flex:1">
+<b>{{ user.username }}</b>
+</div>
+</a>
+{% empty %}
+<div style="background:#fff;padding:40px;text-align:center;color:#65676B">
+Aucune autre conversation
+</div>
+{% endfor %}
+{% endblock %}

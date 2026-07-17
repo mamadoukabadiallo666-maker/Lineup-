@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block content %}
+<div style="background:linear-gradient(135deg, var(--rouge), var(--vert));padding:30px;color:#fff">
+<h3>Solde LINEUP</h3>
+<h1>{{ profile.balance }} GNF</h1>
+</div>
+
+<form method="POST" style="background:#fff;padding:12px;margin-top:8px">
+{% csrf_token %}
+<h3 style="color:var(--rouge)">Recharger</h3>
+<input name="amount" type="number" placeholder="Montant en GNF" style="width:100%;padding:10px;border:1px solid #E4E6EB;border-radius:6px;margin:8px 0">
+<button type="submit" style="width:100%;background:var(--vert);color:#fff;border:none;padding:10px;border-radius:6px;font-weight:700">Recharger</button>
+</form>
+
+<div style="background:#fff;margin-top:8px;padding:12px">
+<h3 style="color:var(--rouge)">Historique</h3>
+{% for t in transactions %}
+<div style="display:flex;justify-content:space-between;padding:8px 0;border-bottom:1px solid #F0F2F5">
+<span>{{ t.description }}</span>
+<span style="color:{% if t.type == "deposit" or t.type == "receive" %}var(--vert){% else %}var(--rouge){% endif %}">{% if t.type == "deposit" or t.type == "receive" %}+{% else %}-{% endif %}{{ t.amount }} GNF</span>
+</div>
+{% endfor %}
+</div>
+{% endblock %}

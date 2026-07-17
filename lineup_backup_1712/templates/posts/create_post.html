@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+{% block content %}
+<div style="background:#fff;padding:12px">
+<div style="display:flex;gap:10px;align-items:center;margin-bottom:12px">
+<img src="{{ request.user.profile.avatar.url }}" style="width:40px;height:40px;border-radius:50%">
+<b style="color:var(--rouge)">{{ request.user.username }}</b>
+</div>
+
+<form method="POST" enctype="multipart/form-data">
+{% csrf_token %}
+<textarea name="content" placeholder="À quoi pensez-vous, {{ request.user.username }}?" style="width:100%;border:none;outline:none;font-size:16px;height:150px;resize:none"></textarea>
+
+<label style="display:flex;gap:8px;align-items:center;background:#F0F2F5;padding:10px;border-radius:8px;margin:12px 0;cursor:pointer">
+<svg width="24" height="24" fill="var(--vert)"><path d="M19 7v2.99s-1.99.01-2 0V7h-3s.01-1.99 0-2h3V2h2v3h3v2h-3zm-3 4V8h-3V5H5c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h12c1.1 0 2-.9 2-2v-8h-3zM5 19l3-4 2 3 3-4 4 5H5z"/></svg>
+Photo/Vidéo
+<input type="file" name="image" style="display:none">
+</label>
+
+<button type="submit" style="width:100%;background:var(--rouge);color:#fff;border:none;padding:12px;border-radius:6px;font-weight:700;font-size:16px">Publier</button>
+</form>
+</div>
+{% endblock %}

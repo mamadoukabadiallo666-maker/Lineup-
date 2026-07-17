@@ -1,8 +1,0 @@
-<!DOCTYPE html><html><head><title>Menu</title><style>body{background:#f0f2f5;font-family:Arial}.header{background:#1877f2;color:white;padding:10px;text-align:center}.menu-item{background:white;margin:5px;padding:15px;border-radius:8px;display:block;text-decoration:none;color:black}</style></head><body>
-<div class="header"><h2>Menu</h2></div>
-<a href="{% url 'profile' user.username %}" class="menu-item">👤 Mon Profil</a>
-<a href="{% url 'friends_list' %}" class="menu-item">👥 Amis</a>
-<a href="{% url 'groups_list' %}" class="menu-item">👪 Groupes</a>
-<a href="{% url 'discover' %}" class="menu-item">🔍 Découvrir</a>
-<a href="{% url 'logout' %}" class="menu-item">🚪 Déconnexion</a>
-</body></html>

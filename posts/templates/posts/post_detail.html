@@ -1,10 +1,1 @@
-<!DOCTYPE html><html><head><title>Détail</title></head><body style="background:#f0f2f5">
-<div style="max-width:600px;margin:20px auto;background:white;padding:15px">
-<h3>{{post.user.username}}</h3><p>{{post.content}}</p>
-<hr>
-{% for c in post.comments.all %}{% if not c.parent %}
-<p><b>{{c.user.username}}:</b> {{c.text}} <a href="#reply{{c.id}}">Répondre</a></p>
-{% for r in c.replies.all %}<p style="margin-left:20px">↳ <b>{{r.user.username}}:</b> {{r.text}}</p>{% endfor %}
-<form id="reply{{c.id}}" method="POST" action="{% url 'reply_comment' c.id %}">{% csrf_token %}<input name="text" placeholder="Répondre..."><button>Envoyer</button></form>
-{% endif %}{% endfor %}
-</div></body></html>
+<!DOCTYPE html><html><head><title>Post</title><meta name="viewport" content="width=device-width, initial-scale=1"><style>:root{--rouge:#CE1126; --gris:#F5F5F5; --blanc:#FFFFFF} body{background:var(--gris);font-family:Arial;margin:0;padding:15px} .card{background:var(--blanc);padding:15px;border-radius:12px} img{width:100%;border-radius:8px} .comment{background:#f0f0f0;padding:8px;border-radius:6px;margin:5px 0} input,textarea{width:100%;padding:8px;border:1px solid #ddd;border-radius:6px} button{background:var(--rouge);color:white;border:none;padding:8px 15px;border-radius:6px}</style></head><body><div class="card"><h3>{{ post.user.username }}</h3>{% if post.image %}<img src="{{ post.image.url }}">{% endif %}<p>{{ post.content }}</p><p>❤️ {{ post.total_likes }} | 💬 {{ post.comments.count }}</p><form method="POST" action="{% url 'like_post' post.id %}">{% csrf_token %}<button>Like</button></form><hr><h4>Commentaires</h4>{% for c in post.comments.all %}<div class="comment"><b>{{ c.user.username }}</b>: {{ c.text }}</div>{% empty %}<p>Aucun commentaire</p>{% endfor %}<form method="POST" action="{% url 'add_comment' post.id %}">{% csrf_token %}<input type="text" name="text" placeholder="Écrire un commentaire..." required><button>Envoyer</button></form></div><br><a href="/">← Retour</a></body></html>

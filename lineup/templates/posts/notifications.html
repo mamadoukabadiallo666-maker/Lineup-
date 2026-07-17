@@ -1,0 +1,25 @@
+{% extends "base.html" %}
+{% block content %}
+<div style="background:#fff;padding:12px;border-bottom:1px solid #E4E6EB">
+<h2 style="color:var(--rouge)">Notifications</h2>
+</div>
+
+{% for notif in notifications %}
+<div style="background:{% if not notif.is_read %}#F0F8FF{% else %}#fff{% endif %};padding:12px;display:flex;gap:10px;border-bottom:1px solid #E4E6EB">
+<img src="{{ notif.from_user.profile.avatar.url }}" style="width:50px;height:50px;border-radius:50%">
+<div style="flex:1">
+<b>{{ notif.from_user.username }}</b>
+{% if notif.notification_type == "like" %} a aimé votre publication
+{% elif notif.notification_type == "comment" %} a commenté votre publication
+{% elif notif.notification_type == "friend" %} vous a envoyé une demande dami
+{% elif notif.notification_type == "accept" %} a accepté votre demande dami
+{% endif %}
+<br><small style="color:#65676B">{{ notif.created_at|timesince }}</small>
+</div>
+</div>
+{% empty %}
+<div style="background:#fff;padding:40px;text-align:center;color:#65676B">
+Aucune notification
+</div>
+{% endfor %}
+{% endblock %}

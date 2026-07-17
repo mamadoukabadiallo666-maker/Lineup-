@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>LineUp - Connectez-vous</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#f0f2f5;display:flex;justify-content:center;align-items:center;min-height:100vh;padding:20px}
+.container{display:flex;gap:40px;max-width:980px;flex-wrap:wrap;justify-content:center;align-items:center}
+.left{max-width:400px}
+.left h1{color:#CE1126;font-size:48px;margin-bottom:10px}
+.left p{font-size:22px;color:#1c1e21}
+.right{background:white;padding:20px;border-radius:8px;box-shadow:0 2px 4px rgba(0,0,0,.1),0 8px 16px rgba(0,0,0,.1);width:380px}
+input{width:100%;padding:14px;margin:10px 0;border:1px solid #ddd;border-radius:6px;font-size:16px}
+.btn-login{width:100%;padding:14px;background:#CE1126;color:white;border:none;border-radius:6px;font-weight:bold;font-size:18px;cursor:pointer;margin-top:10px}
+.btn-signup{width:60%;padding:14px;background:#00bfff;color:white;border:none;border-radius:6px;font-weight:bold;font-size:16px;cursor:pointer;margin:20px auto;display:block}
+.divider{border-top:1px solid #ddd;margin:20px 0}
+@media(max-width:900px){.container{flex-direction:column}.left{text-align:center}}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="left">
+    <h1>LINEUP</h1>
+    <p>Connectez-vous pour voir le live et interagir avec la communauté.</p>
+  </div>
+  <div class="right">
+    <form method="post">
+      {% csrf_token %}
+      <input type="text" name="username" placeholder="Adresse e-mail ou numéro de tél." required>
+      <input type="password" name="password" placeholder="Mot de passe" required>
+      <button class="btn-login" type="submit">Se connecter</button>
+    </form>
+    <div class="divider"></div>
+    <a href="/signup/"><button class="btn-signup">Créer un nouveau compte</button></a>
+  </div>
+</div>
+</body>
+</html>

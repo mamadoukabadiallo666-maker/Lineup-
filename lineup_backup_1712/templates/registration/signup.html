@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>Inscription - LineUp</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;font-family:Arial,sans-serif}
+body{background:#f0f2f5;display:flex;justify-content:center;align-items:center;min-height:100vh;padding:20px}
+.box{background:white;padding:20px;border-radius:8px;width:400px;box-shadow:0 2px 4px rgba(0,0,0,.1),0 8px 16px rgba(0,0,0,.1)}
+h2{color:#CE1126;text-align:center;margin-bottom:20px}
+input{width:100%;padding:14px;margin:10px 0;border:1px solid #ddd;border-radius:6px;font-size:16px}
+.btn{width:100%;padding:14px;background:#00bfff;color:white;border:none;border-radius:6px;font-weight:bold;font-size:16px;cursor:pointer}
+.btn:hover{background:#0099cc}
+a{display:block;text-align:center;margin-top:15px;color:#CE1126;text-decoration:none}
+</style>
+</head>
+<body>
+<div class="box">
+<h2>Créer un nouveau compte</h2>
+<form method="post">{% csrf_token %}
+{{ form.as_p }}
+<button class="btn" type="submit">S'inscrire</button>
+</form>
+<a href="/login/">Déjà un compte ? Se connecter</a>
+</div>
+</body>
+</html>
