@@ -6,3 +6,5 @@ __pycache__/
 node_modules/
 dist/
 *.mp4
+media/posts/*.mp4
+media/posts/*.pdf
